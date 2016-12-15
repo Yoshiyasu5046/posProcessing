@@ -2,19 +2,22 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import re
 
 inputted_file = open(sys.argv[1], 'r')
 outputted_file = open(sys.argv[2], 'w')
 
 for line in inputted_file:	
-	# rubyでいうchompと同様なものがpythonにはないので、rstrip()で代用。
-	line = line.rstrip()
-	splitted_input = line.split(',')
-	goodsId = splitted_input[7]
-	member = splitted_input[11]
-	sales = splitted_input[9]
-	output = goodsId + ' ' + member + ' ' + sales + '\n'
-	outputted_file.write(output)
+	text = '\d+'
+	if re.search(text, line):
+		# rubyでいうchompと同様なものがpythonにはないので、rstrip()で代用。
+		line = line.rstrip()
+		splitted_input = line.split(',')
+		goodsId = splitted_input[7]
+		member = splitted_input[11]
+		sales = splitted_input[9]
+		output = goodsId + ' ' + member + ' ' + sales + '\n'
+		outputted_file.write(output)
 
 
 inputted_file.close()
