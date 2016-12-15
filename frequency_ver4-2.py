@@ -6,6 +6,7 @@ import sys
 inputted_file = open(sys.argv[1], 'r')
 outputted_file = open(sys.argv[2], 'w')
 
+# もっとシンプルに書けそう。
 splitted_preLine = []
 for line in inputted_file:
 	line = line.rstrip()
