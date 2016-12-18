@@ -3,11 +3,9 @@
 
 import sys
 import re
+import fileinput
 
-inputted_file = open(sys.argv[1], 'r')
-outputted_file = open(sys.argv[2], 'w')
-
-for line in inputted_file:	
+for line in fileinput.input():	
 	text = '\d+'
 	if re.search(text, line):
 		# rubyでいうchompと同様なものがpythonにはないので、rstrip()で代用。
@@ -16,9 +14,5 @@ for line in inputted_file:
 		goodsId = splitted_input[7]
 		member = splitted_input[11]
 		sales = splitted_input[9]
-		output = goodsId + ' ' + member + ' ' + sales + '\n'
-		outputted_file.write(output)
-
-
-inputted_file.close()
-outputted_file.close()
+		output = goodsId + ' ' + member + ' ' + sales
+		print output
