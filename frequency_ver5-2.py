@@ -15,15 +15,13 @@ for line in fileinput.input():
 		if preMemAndGId == memAndGId:
 			total = int(splitted_preLine[2])
 			total += int(splitted_line[2])
-			splitted_preLine[0] = splitted_line[0] # 現在の行の商品コードを前の行の商品コードしてsplitted_preLine[0]に格納。
-			splitted_preLine[1] = splitted_line[1] # 現在の行の会員番号を前の行の会員番号してsplitted_preLine[1]に格納。
-			splitted_preLine[2] = str(total) # 同じ商品コード：会員番号の組み合わせを持つ行の売上総数の合計をsplitted_preLine[2]に格納
+			# 現在の行の商品コード、会員番号、前の行との売上総数の合計をsplitted_preLine[0:2]に格納。
+			splitted_preLine[0:2] = [splitted_line[0], splitted_line[1], str(total)]
 		elif preMemAndGId != memAndGId:
 			output = preMemAndGId + '\t' + splitted_preLine[2]
 			print output
-			splitted_preLine[0] = splitted_line[0] # 現在の行の商品コードを前の行の商品コードとしてsplitted_preLineに格納。
-			splitted_preLine[1] = splitted_line[1] # 現在の行の会員番号を前の行の会員番号としてsplitted_preLine[1]に格納。
-			splitted_preLine[2] = splitted_line[2] # 現在の行の売上総数を前の行の売上総数としてsplitted_preLine[1]に格納。
+			# 現在の行の商品コード、会員番号、売上総数をsplitted_preLine[0:2]に格納。
+			splitted_preLine[0:2] = [splitted_line[0], splitted_line[1], splitted_line[2]]
 	else:
 		splitted_preLine = splitted_line
 
