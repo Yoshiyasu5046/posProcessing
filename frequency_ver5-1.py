@@ -7,7 +7,7 @@ import fileinput
 
 for line in fileinput.input():	
 	# 正規表現は可能な限り厳密に書くことを求められる。
-	text = '\d+' # ^\d+
+	text = '^\d+' 
 	if re.search(text, line):
 		# rubyでいうchompと同様なものがpythonにはないので、rstrip()で代用。
 		line = line.rstrip()
